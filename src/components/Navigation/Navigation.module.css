@@ -1,0 +1,16 @@
+.nav {
+  display: flex;
+  column-gap: 60px;
+}
+
+.nav-link {
+  font-size: 1.6rem;
+  color: #232134;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.nav-link_active {
+  color: #5e96fc;
+  font-weight: 500;
+}
