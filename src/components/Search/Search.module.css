@@ -1,0 +1,38 @@
+.search-input {
+  padding: 13.5px;
+  font-size: 1.4rem;
+  width: 100%;
+  box-sizing: content-box;
+  border-radius: 8px;
+  padding-left: 36px !important;
+  font-family: "Inter", sans-serif;
+  border: 1px solid #d5d6dc;
+}
+
+.search-input:hover {
+  border: 1px solid #5e96fc;
+}
+
+.search-input:focus {
+  border: 1px solid #5e96fc;
+  caret-color: #5e96fc;
+}
+
+.search-icon {
+  left: 10px;
+}
+
+.search-button button {
+  font-size: 1.4rem;
+  padding: 5.5px 20px;
+  background-color: #5e96fc;
+  outline: none;
+}
+
+.search-button:hover button {
+  background-color: #92c1ff;
+}
+
+.search-button:active button {
+  background-color: #3b7cd3;
+}
