@@ -1,0 +1,153 @@
+.filters {
+  width: 315px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #eaebed;
+  border-radius: 12px;
+}
+
+.filters__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.filters__row {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.filters__header .filters__title {
+  font-size: 2rem;
+}
+
+.filters__title {
+  font-size: 1.6rem;
+  color: #232134;
+}
+
+.filters__reset-button {
+  cursor: pointer;
+  color: #acadb9;
+  font-weight: 500;
+  font-size: 1.4rem;
+  font-family: "Inter", sans-serif;
+  border: none;
+  outline: none;
+  display: flex;
+  background: transparent;
+  height: 20px;
+  width: 125px;
+}
+
+.filters__close-icon {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
+
+.filters__close-icon::after {
+  content: "";
+  position: absolute;
+  width: 10.32px;
+  height: 0px;
+  left: 8.34px;
+  top: 9.3px;
+  border: 1.25px solid #acadb9;
+  transform: rotate(-135deg);
+}
+
+.filters__close-icon::before {
+  content: "";
+  border: 1.25px solid #acadb9;
+  position: absolute;
+  width: 10.32px;
+  height: 0px;
+  left: 8.3px;
+  top: 9px;
+  transform: rotate(135deg);
+}
+
+.filters__reset-button:hover {
+  color: #92c1ff;
+}
+
+.filters__reset-button:active {
+  color: #5e96fc;
+}
+
+.filters__reset-button:hover .filters__close-icon::after,
+.filters__reset-button:hover .filters__close-icon::before {
+  border: 1.25px solid #92c1ff;
+}
+
+.filters__reset-button:active .filters__close-icon::after,
+.filters__reset-button:active .filters__close-icon::before {
+  border: 1.25px solid #5e96fc;
+}
+
+.filters__select input {
+  font-family: "Inter", sans-serif;
+}
+
+.filters__select input:focus + div > svg  {
+  transform: rotate(180deg);
+}
+
+.filters__select input:focus + div > svg > path {
+  stroke: #5E96FC;
+}
+
+.filters__select input:hover {
+  border: 1px solid #5e96fc;
+}
+
+.filters__select input {
+  font-size: 1.4rem;
+}
+
+.filters__select label,
+.filters__input label {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.filters__input button {
+  border: none;
+}
+
+.filters__input input {
+  font-size: 1.4rem;
+  border: 1px solid #d5d6dc;
+}
+
+.filters__input input:hover {
+  border: 1px solid #5e96fc;
+}
+
+.filters__input input:focus {
+  caret-color: #5e96fc;
+}
+
+.filters__input svg path {
+  fill: #acadb9;
+}
+
+.filters__button:hover {
+  background-color: #92c1ff;
+}
+
+.filters__button:active {
+  background-color: #3b7cd3;
+}
+
+.filters__button span {
+  font-size: 1.6rem;
+}
