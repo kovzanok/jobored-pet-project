@@ -6,6 +6,10 @@
   margin: 4px 0;
 }
 
+.mantine-Select-item:hover {
+  background-color: #DEECFF;
+}
+
 .mantine-Select-item:active {
   color: white;
   background-color: #5E96FC;
