@@ -12,8 +12,8 @@ export default function DownIcom() {
       <path
         d="M1.33325 1L5.47929 4.55374C5.77888 4.81054 6.22096 4.81054 6.52055 4.55374L10.6666 1"
         stroke="#ACADB9"
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
     </svg>
   );
