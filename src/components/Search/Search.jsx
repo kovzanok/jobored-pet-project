@@ -17,7 +17,7 @@ export default function Search() {
           Поиск
         </Button>
       }
-      rightSectionWidth={30}
+      rightSectionWidth={160}
       icon={<SearchIcon />}
     />
   );
