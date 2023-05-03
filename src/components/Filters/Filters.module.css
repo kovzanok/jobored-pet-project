@@ -7,6 +7,7 @@
   background-color: white;
   border: 1px solid #eaebed;
   border-radius: 12px;
+  height: 360px;
 }
 
 .filters__header {
@@ -92,6 +93,10 @@
   border: 1.25px solid #5e96fc;
 }
 
+.filters__select {
+  overflow-x: hidden;
+}
+
 .filters__select input {
   font-family: "Inter", sans-serif;
 }
@@ -151,3 +156,4 @@
 .filters__button span {
   font-size: 1.6rem;
 }
+
