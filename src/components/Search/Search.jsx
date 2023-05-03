@@ -1,19 +1,39 @@
-import React from "react";
+import React, { useContext } from "react";
 import { TextInput, Button } from "@mantine/core";
 import SearchIcon from "../UI/SearchIcon";
 import classes from "./Search.module.css";
+import { FiltersContext } from "../../context/FiltersContext";
+import { VacanciesContext } from "../../context/VacancyContext";
+import { VacancyService } from "../../API/VacancyService";
+import { useSearchParams } from "react-router-dom";
 
 export default function Search() {
+  const [filters, setFilters] = useContext(FiltersContext);
+  const [vacancies, setVacancies] = useContext(VacanciesContext);
+  const [searchParams, setSearchParams] = useSearchParams();
+
   return (
     <TextInput
+      value={filters["keyword"] || ""}
+      onChange={(e) => setFilters({ ...filters, keyword: e.target.value })}
       classNames={{
         input: classes["search-input"],
         icon: classes["search-icon"],
-        rightSection: classes['search-button']
+        rightSection: classes["search-button"],
       }}
       placeholder="Введите название вакансии"
       rightSection={
-        <Button style={{borderRadius: '8px'}} size="lg">
+        <Button
+          onClick={() => {
+            const searchParams = new URLSearchParams(filters);
+            setSearchParams(searchParams);
+            VacancyService.getAllVacancies(searchParams).then((data) =>
+              setVacancies(data.objects)
+            );
+          }}
+          style={{ borderRadius: "8px" }}
+          size="lg"
+        >
           Поиск
         </Button>
       }
