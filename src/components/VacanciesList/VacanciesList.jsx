@@ -6,7 +6,6 @@ import { VacanciesContext } from "../../context/VacancyContext";
 
 export default function VacanciesList() {
   const [vacancies] = useContext(VacanciesContext);
-  console.log(vacancies);
   return (
     <List
       classNames={{
@@ -19,7 +18,7 @@ export default function VacanciesList() {
       {vacancies.map((vacancy) => {
         const { profession, town, type_of_work,payment_from, payment_to, currency } = vacancy;
         return (
-          <List.Item>
+          <List.Item key={vacancy.id}>
             <Vacancy
               profession={profession}
               town={town.title}
