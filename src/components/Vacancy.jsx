@@ -14,7 +14,7 @@ export default function Vacancy({
   return (
     <Card padding="25px">
       <Group noWrap position="apart">
-        <Title truncate='start' size="2rem" weight={600} color="#5E96FC">
+        <Title size="2rem" weight={600} color="#5E96FC">
           {profession}
         </Title>
         <StartIcon />
