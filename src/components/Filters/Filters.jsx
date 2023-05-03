@@ -1,4 +1,4 @@
-import { Select, Button, NumberInput } from "@mantine/core";
+import { Select, Button, NumberInput, Loader } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import classes from "./Filters.module.css";
 import DownIcon from "../UI/DownIcon.jsx";
@@ -10,7 +10,7 @@ export default function Filters() {
 
   useEffect(() => {
     VacancyService.getAllCatalogues().then((data) => setCatalogues(data));
-  },[]);
+  }, []);
   return (
     <form className={classes["filters"]}>
       <div className={classes["filters__header"]}>
@@ -22,14 +22,16 @@ export default function Filters() {
       </div>
       <div className={classes["filters__row"]}>
         <Select
-          maxDropdownHeight='20rem'
+          maxDropdownHeight="20rem"
           className={classes["filters__select"]}
-          data={catalogues.map((catalogue) => catalogue.title)}
+          data={catalogues.map((catalogue) => {
+            return { value: catalogue.key, label: catalogue.title };
+          })}
           radius="md"
           placeholder="Выберете отрасль"
           label="Отрасль"
           size="xl"
-          rightSection={<DownIcon />}
+          rightSection={catalogues.length === 0 ? <Loader /> : <DownIcon />}
           rightSectionWidth={50}
           styles={{ rightSection: { pointerEvents: "none" } }}
         />
