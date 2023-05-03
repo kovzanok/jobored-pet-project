@@ -10,8 +10,7 @@ export default function Filters() {
 
   useEffect(() => {
     VacancyService.getAllCatalogues().then((data) => setCatalogues(data));
-  });
-  console.log(catalogues);
+  },[]);
   return (
     <form className={classes["filters"]}>
       <div className={classes["filters__header"]}>
