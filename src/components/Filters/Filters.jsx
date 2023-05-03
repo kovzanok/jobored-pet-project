@@ -1,10 +1,17 @@
 import { Select, Button, NumberInput } from "@mantine/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./Filters.module.css";
 import DownIcon from "../UI/DownIcon.jsx";
-import styles from './Select.css'
+import styles from "./Select.css";
+import { VacancyService } from "../../API/VacancyService";
 
 export default function Filters() {
+  const [catalogues, setCatalogues] = useState([]);
+
+  useEffect(() => {
+    VacancyService.getAllCatalogues().then((data) => setCatalogues(data));
+  });
+  console.log(catalogues);
   return (
     <form className={classes["filters"]}>
       <div className={classes["filters__header"]}>
@@ -16,8 +23,9 @@ export default function Filters() {
       </div>
       <div className={classes["filters__row"]}>
         <Select
+          maxDropdownHeight='20rem'
           className={classes["filters__select"]}
-          data={["IT, интернет, связь, телеком", "Кадры, управление персоналом", "Искусство, культура, развлечения", "Банки, инвестиции, лизинг"]}
+          data={catalogues.map((catalogue) => catalogue.title)}
           radius="md"
           placeholder="Выберете отрасль"
           label="Отрасль"
