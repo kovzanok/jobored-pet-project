@@ -1,7 +1,10 @@
 export class VacancyService {
-  static async getAllVacancies() {
+  static async getAllVacancies(searchParams) {
+    const searchParamsString = searchParams.toString();
     const response = await fetch(
-      "https://startup-summer-2023-proxy.onrender.com/2.0/vacancies",
+      `https://startup-summer-2023-proxy.onrender.com/2.0/vacancies${
+        searchParamsString.length !== 0 ? "?" + searchParamsString : ""
+      }`,
       {
         headers: {
           Authorization:
