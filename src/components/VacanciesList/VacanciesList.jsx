@@ -31,35 +31,47 @@ export default function VacanciesList() {
           </div>
         ) : (
           <>
-            {vacancies.slice((activePage - 1) * 4,((activePage - 1) * 4)+4).map((vacancy) => {
-              const {
-                profession,
-                town,
-                type_of_work,
-                payment_from,
-                payment_to,
-                currency,
-              } = vacancy;
-              return (
-                <VacancyContext.Provider key={vacancy.id} value={vacancy}>
-                  <List.Item>
-                    <Vacancy
-                      id={vacancy.id}
-                      profession={profession}
-                      town={town.title}
-                      typeOfWork={type_of_work.title}
-                      paymentFrom={payment_from}
-                      paymentTo={payment_to}
-                      currency={currency}
-                    ></Vacancy>
-                  </List.Item>
-                </VacancyContext.Provider>
-              );
-            })}
+            {vacancies
+              .slice((activePage - 1) * 4, (activePage - 1) * 4 + 4)
+              .map((vacancy) => {
+                const {
+                  profession,
+                  town,
+                  type_of_work,
+                  payment_from,
+                  payment_to,
+                  currency,
+                } = vacancy;
+                return (
+                  <VacancyContext.Provider key={vacancy.id} value={vacancy}>
+                    <List.Item>
+                      <Vacancy
+                        id={vacancy.id}
+                        profession={profession}
+                        town={town.title}
+                        typeOfWork={type_of_work.title}
+                        paymentFrom={payment_from}
+                        paymentTo={payment_to}
+                        currency={currency}
+                      ></Vacancy>
+                    </List.Item>
+                  </VacancyContext.Provider>
+                );
+              })}
             <Pagination
+              styles={{
+                control: {
+                  fontSize: '1.4rem',
+                  width:'32px',
+                  "&[data-active]": {
+                    backgroundColor: "#5E96FC",
+                  },
+                },
+              }}
               mt="40px"
               mb="44px"
-              size="xl"
+              size="3.2rem"
+              spacing='0.8rem'
               position="center"
               value={activePage}
               onChange={setActivePage}
