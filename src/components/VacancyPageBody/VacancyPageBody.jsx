@@ -18,7 +18,7 @@ export default function VacancyPageBody() {
   return (
     <>
       {vacancy === null ? (
-        <Loader />
+        <Loader mt='40px' w='100%' display='block' ta='center'  size='100px' />
       ) : (
         <>
           <VacancyContext.Provider value={vacancy}>
