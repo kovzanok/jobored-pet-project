@@ -1,0 +1,29 @@
+.card {
+  font-family: "Inter", sans-serif;
+  padding: 24px;
+}
+
+
+.card p {
+  margin-bottom: 1.6rem;
+}
+
+.info {
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.card ul {
+  padding-left: 25px;
+  margin-bottom: 2rem;
+  margin-top: 1.6rem;
+  font-weight: 400;
+}
+
+.card li {
+  font-size: 1.6rem;
+}
+
+.card li p {
+  margin: 0;
+}
