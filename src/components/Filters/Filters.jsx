@@ -17,7 +17,10 @@ export default function Filters() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useMemo(() => {
-    VacancyService.getAllCatalogues().then((data) => setCatalogues(data));
+    VacancyService.getAllCatalogues().then((data) => {
+      console.log(data);
+      setCatalogues(data);
+    });
   }, []);
   return (
     <form onSubmit={(e) => e.preventDefault()} className={classes["filters"]}>
@@ -38,8 +41,8 @@ export default function Filters() {
       </div>
       <div className={classes["filters__row"]}>
         <Select
+          defaultValue={Number(filters["catalogues"])}
           disabled={catalogues.length === 0}
-          value={filters["catalogues"]}
           onChange={(value) => {
             setFilters({ ...filters, catalogues: value });
           }}
