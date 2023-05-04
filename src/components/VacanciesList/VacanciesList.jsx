@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Vacancy from "../Vacancy";
 import { List, Loader } from "@mantine/core";
 import classes from "./VacanciesList.module.css";
-import { VacanciesContext } from "../../context/VacancyContext";
+import { VacanciesContext, VacancyContext } from "../../context/VacancyContext";
 import { Pagination } from "@mantine/core";
 
 export default function VacanciesList() {
@@ -39,20 +39,28 @@ export default function VacanciesList() {
                 currency,
               } = vacancy;
               return (
-                <List.Item key={vacancy.id}>
-                  <Vacancy
-                    id={vacancy.id}
-                    profession={profession}
-                    town={town.title}
-                    typeOfWork={type_of_work.title}
-                    paymentFrom={payment_from}
-                    paymentTo={payment_to}
-                    currency={currency}
-                  ></Vacancy>
-                </List.Item>
+                <VacancyContext.Provider key={vacancy.id} value={vacancy}>
+                  <List.Item>
+                    <Vacancy
+                      id={vacancy.id}
+                      profession={profession}
+                      town={town.title}
+                      typeOfWork={type_of_work.title}
+                      paymentFrom={payment_from}
+                      paymentTo={payment_to}
+                      currency={currency}
+                    ></Vacancy>
+                  </List.Item>
+                </VacancyContext.Provider>
               );
             })}
-            <Pagination mb="44px" size="xl" position="center" total={3} />
+            <Pagination
+              mt="40px"
+              mb="44px"
+              size="xl"
+              position="center"
+              total={3}
+            />
           </>
         )}
       </List>

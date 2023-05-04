@@ -1,5 +1,8 @@
 import React, { useState, useContext } from "react";
-import { ActiveVacanciesContext } from "../../context/VacancyContext";
+import {
+  ActiveVacanciesContext,
+  VacancyContext,
+} from "../../context/VacancyContext";
 
 const saveActiveVacancies = (activeVacancies) => {
   window.localStorage.setItem(
@@ -12,17 +15,23 @@ export default function StartIcon({ id }) {
   const [activeVacancies, setActiveVacancies] = useContext(
     ActiveVacanciesContext
   );
+  
+  const vacancyC = useContext(VacancyContext);
   const [isHovered, setIsHovered] = useState(false);
-  const isActive = activeVacancies.includes(id);
+  const isActive =
+    activeVacancies.findIndex((vacancy) => vacancy.id === id) !== -1;
   const toggleVacancy = (e) => {
     e.preventDefault();
     const newActiveVacancies = activeVacancies.slice();
     if (isActive) {
-      const index = newActiveVacancies.indexOf(id);
+      const index = newActiveVacancies.findIndex(
+        (vacancy) => vacancy.id === id
+      );
       newActiveVacancies.splice(index, 1);
       setActiveVacancies([...newActiveVacancies]);
     } else {
-      newActiveVacancies.push(id);
+      const vacancy = { ...vacancyC };
+      newActiveVacancies.push(vacancy);
       setActiveVacancies([...newActiveVacancies]);
     }
     saveActiveVacancies(newActiveVacancies);
