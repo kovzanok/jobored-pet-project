@@ -18,7 +18,6 @@ export default function Filters() {
 
   useMemo(() => {
     VacancyService.getAllCatalogues().then((data) => {
-      console.log(data);
       setCatalogues(data);
     });
   }, []);
@@ -29,9 +28,11 @@ export default function Filters() {
         <button
           disabled={isVacanciesLoading}
           onClick={() => {
-            setIsVacanciesLoading(true);
-            setSearchParams();
             setFilters({ published: 1 });
+            if (searchParams.toString().length !== 0) {
+              setSearchParams(new URLSearchParams());
+              setIsVacanciesLoading(true);
+            }
           }}
           className={classes["filters__reset-button"]}
         >
@@ -41,8 +42,8 @@ export default function Filters() {
       </div>
       <div className={classes["filters__row"]}>
         <Select
-          defaultValue={Number(filters["catalogues"])}
-          disabled={catalogues.length === 0}
+          value={Number(filters["catalogues"])}
+          disabled={catalogues.length === 0 || isVacanciesLoading}
           onChange={(value) => {
             setFilters({ ...filters, catalogues: value });
           }}
@@ -55,7 +56,13 @@ export default function Filters() {
           placeholder="Выберете отрасль"
           label="Отрасль"
           size="xl"
-          rightSection={catalogues.length === 0 ? <Loader /> : <DownIcon />}
+          rightSection={
+            catalogues.length === 0 || isVacanciesLoading ? (
+              <Loader />
+            ) : (
+              <DownIcon />
+            )
+          }
           rightSectionWidth={50}
           styles={{ rightSection: { pointerEvents: "none" } }}
         />
@@ -96,12 +103,8 @@ export default function Filters() {
       <Button
         disabled={isVacanciesLoading}
         onClick={() => {
-          const searchParams = new URLSearchParams(filters);
           setIsVacanciesLoading(true);
-          setSearchParams(searchParams);
-          VacancyService.getAllVacancies(searchParams).then((data) =>
-            setVacancies(data.objects)
-          );
+          setSearchParams(new URLSearchParams(filters));
         }}
         bg="#5E96FC"
         className={classes["filters__button"]}
