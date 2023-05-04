@@ -69,7 +69,7 @@ export default function Filters() {
       </div>
       <div className={classes["filters__row"]}>
         <NumberInput
-        disabled={isVacanciesLoading}
+          disabled={isVacanciesLoading}
           min={1}
           value={Number(filters["payment_from"]) || ""}
           onChange={(value) => {
@@ -86,7 +86,7 @@ export default function Filters() {
           size="xl"
         />
         <NumberInput
-        disabled={isVacanciesLoading}
+          disabled={isVacanciesLoading}
           min={1}
           value={Number(filters["payment_to"]) || ""}
           onChange={(value) => {
@@ -105,8 +105,10 @@ export default function Filters() {
       <Button
         disabled={isVacanciesLoading}
         onClick={() => {
-          setIsVacanciesLoading(true);
-          setSearchParams(new URLSearchParams(filters));
+          if (new URLSearchParams(filters).toString()!==searchParams.toString()) {
+            setIsVacanciesLoading(true);
+            setSearchParams(new URLSearchParams(filters));
+          }
         }}
         bg="#5E96FC"
         className={classes["filters__button"]}
