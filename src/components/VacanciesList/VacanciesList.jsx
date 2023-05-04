@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Vacancy from "../Vacancy";
 import { List, Loader } from "@mantine/core";
 import classes from "./VacanciesList.module.css";
@@ -6,6 +6,7 @@ import { VacanciesContext, VacancyContext } from "../../context/VacancyContext";
 import { Pagination } from "@mantine/core";
 
 export default function VacanciesList() {
+  const [activePage, setActivePage] = useState(1);
   const [vacancies, , isVacanciesLoading] = useContext(VacanciesContext);
   return (
     <>
@@ -15,6 +16,7 @@ export default function VacanciesList() {
         }}
         mt="16px"
         spacing="xl"
+        w="100%"
         listStyleType="none"
       >
         {isVacanciesLoading ? (
@@ -29,7 +31,7 @@ export default function VacanciesList() {
           </div>
         ) : (
           <>
-            {vacancies.map((vacancy) => {
+            {vacancies.slice((activePage - 1) * 4,((activePage - 1) * 4)+4).map((vacancy) => {
               const {
                 profession,
                 town,
@@ -59,7 +61,9 @@ export default function VacanciesList() {
               mb="44px"
               size="xl"
               position="center"
-              total={3}
+              value={activePage}
+              onChange={setActivePage}
+              total={Math.ceil(vacancies.length / 4)}
             />
           </>
         )}
