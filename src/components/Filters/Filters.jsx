@@ -69,6 +69,7 @@ export default function Filters() {
       </div>
       <div className={classes["filters__row"]}>
         <NumberInput
+        disabled={isVacanciesLoading}
           min={1}
           value={Number(filters["payment_from"]) || ""}
           onChange={(value) => {
@@ -85,6 +86,7 @@ export default function Filters() {
           size="xl"
         />
         <NumberInput
+        disabled={isVacanciesLoading}
           min={1}
           value={Number(filters["payment_to"]) || ""}
           onChange={(value) => {

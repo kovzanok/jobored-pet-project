@@ -75,21 +75,21 @@
   transform: rotate(135deg);
 }
 
-.filters__reset-button:hover {
+.filters__reset-button:not(:disabled):hover {
   color: #92c1ff;
 }
 
-.filters__reset-button:active {
+.filters__reset-button:not(:disabled):active {
   color: #5e96fc;
 }
 
-.filters__reset-button:hover .filters__close-icon::after,
-.filters__reset-button:hover .filters__close-icon::before {
+.filters__reset-button:not(:disabled):hover .filters__close-icon::after,
+.filters__reset-button:not(:disabled):hover .filters__close-icon::before {
   border: 1.25px solid #92c1ff;
 }
 
-.filters__reset-button:active .filters__close-icon::after,
-.filters__reset-button:active .filters__close-icon::before {
+.filters__reset-button:not(:disabled):active .filters__close-icon::after,
+.filters__reset-button:not(:disabled):active .filters__close-icon::before {
   border: 1.25px solid #5e96fc;
 }
 
@@ -101,15 +101,17 @@
   font-family: "Inter", sans-serif;
 }
 
-.filters__select input:focus + div > svg  {
+.filters__select input:focus + div > svg {
   transform: rotate(180deg);
 }
 
 .filters__select input:focus + div > svg > path {
-  stroke: #5E96FC;
+  stroke: #5e96fc;
 }
 
-.filters__select input:hover {
+
+
+.filters__select input:not(:disabled):hover {
   border: 1px solid #5e96fc;
 }
 
@@ -133,7 +135,9 @@
   border: 1px solid #d5d6dc;
 }
 
-.filters__input input:hover {
+
+
+.filters__input input:not(:disabled):hover {
   border: 1px solid #5e96fc;
 }
 
@@ -145,7 +149,7 @@
   fill: #acadb9;
 }
 
-.filters__button:hover {
+.filters__button:not(:disabled):hover {
   background-color: #92c1ff;
 }
 
@@ -156,4 +160,3 @@
 .filters__button span {
   font-size: 1.6rem;
 }
-
