@@ -18,6 +18,7 @@ const VacancyCard = ({
     <Card padding="25px">
       <Group noWrap position="apart" align="start">
         <Title
+          ta='start'
           size={isVacancyPage ? "2.8rem" : "2rem"}
           weight={isVacancyPage ? 700 : 600}
           color={isVacancyPage ? "#232134" : "#5E96FC"}
