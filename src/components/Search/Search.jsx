@@ -9,13 +9,13 @@ import { useSearchParams } from "react-router-dom";
 
 export default function Search() {
   const [filters, setFilters] = useContext(FiltersContext);
-  const [vacancies, setVacancies,isVacanciesLoading , setIsVacanciesLoading] =
+  const [vacancies, setVacancies, isVacanciesLoading, setIsVacanciesLoading] =
     useContext(VacanciesContext);
   const [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <TextInput
-    disabled={isVacanciesLoading}
+      disabled={isVacanciesLoading}
       value={filters["keyword"] || ""}
       onChange={(e) => {
         const newFilters = { ...filters, keyword: e.target.value };
@@ -25,7 +25,7 @@ export default function Search() {
         setFilters({ ...newFilters });
       }}
       classNames={{
-        root: classes['root'],
+        root: classes["root"],
         input: classes["search-input"],
         icon: classes["search-icon"],
         rightSection: classes["search-button"],
@@ -33,14 +33,20 @@ export default function Search() {
       placeholder="Введите название вакансии"
       rightSection={
         <Button
-        disabled={isVacanciesLoading}
+          disabled={isVacanciesLoading}
           onClick={() => {
-            setIsVacanciesLoading(true);
-            const searchParams = new URLSearchParams(filters);
-            setSearchParams(searchParams);
-            VacancyService.getAllVacancies(searchParams).then((data) => {
-              setVacancies(data.objects);
-            });
+            
+            if (
+              new URLSearchParams(filters).toString() !==
+              searchParams.toString()
+            ) {
+              setIsVacanciesLoading(true);
+              const searchParams = new URLSearchParams(filters);
+              setSearchParams(searchParams);
+              VacancyService.getAllVacancies(searchParams).then((data) => {
+                setVacancies(data.objects);
+              });
+            }
           }}
           style={{ borderRadius: "8px" }}
           size="lg"
