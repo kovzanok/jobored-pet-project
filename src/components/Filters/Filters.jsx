@@ -1,5 +1,5 @@
 import { Select, Button, NumberInput, Loader } from "@mantine/core";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useMemo } from "react";
 import classes from "./Filters.module.css";
 import DownIcon from "../UI/DownIcon.jsx";
 import styles from "./Select.css";
@@ -11,11 +11,12 @@ import { VacanciesContext } from "../../context/VacancyContext";
 export default function Filters() {
   const [catalogues, setCatalogues] = useState([]);
 
-  const [vacancies, setVacancies,isVacanciesLoading,setIsVacanciesLoading] = useContext(VacanciesContext);
+  const [vacancies, setVacancies, isVacanciesLoading, setIsVacanciesLoading] =
+    useContext(VacanciesContext);
   const [filters, setFilters] = useContext(FiltersContext);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  useEffect(() => {
+  useMemo(() => {
     VacancyService.getAllCatalogues().then((data) => setCatalogues(data));
   }, []);
   return (
@@ -23,6 +24,7 @@ export default function Filters() {
       <div className={classes["filters__header"]}>
         <h2 className={classes["filters__title"]}>Фильтры</h2>
         <button
+          disabled={isVacanciesLoading}
           onClick={() => {
             setIsVacanciesLoading(true);
             setSearchParams();
@@ -36,7 +38,8 @@ export default function Filters() {
       </div>
       <div className={classes["filters__row"]}>
         <Select
-          value={filters["catalogues"] || ""}
+          disabled={catalogues.length === 0}
+          value={filters["catalogues"]}
           onChange={(value) => {
             setFilters({ ...filters, catalogues: value });
           }}
@@ -57,7 +60,7 @@ export default function Filters() {
       <div className={classes["filters__row"]}>
         <NumberInput
           min={1}
-          value={filters["payment_from"] || ""}
+          value={Number(filters["payment_from"]) || ""}
           onChange={(value) => {
             const newFilters = { ...filters, payment_from: value };
             if (value.length === 0) {
@@ -72,8 +75,8 @@ export default function Filters() {
           size="xl"
         />
         <NumberInput
-        min={1}
-          value={filters["payment_to"] || ""}
+          min={1}
+          value={Number(filters["payment_to"]) || ""}
           onChange={(value) => {
             const newFilters = { ...filters, payment_to: value };
             if (value.length === 0) {
@@ -88,6 +91,7 @@ export default function Filters() {
         />
       </div>
       <Button
+        disabled={isVacanciesLoading}
         onClick={() => {
           const searchParams = new URLSearchParams(filters);
           setIsVacanciesLoading(true);
