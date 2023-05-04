@@ -1,3 +1,7 @@
+.root {
+  width: 100%;
+}
+
 .search-input {
   height: 48px;
   font-size: 1.4rem;

@@ -24,6 +24,7 @@ export default function Search() {
         setFilters({ ...newFilters });
       }}
       classNames={{
+        root: classes['root'],
         input: classes["search-input"],
         icon: classes["search-icon"],
         rightSection: classes["search-button"],
