@@ -15,7 +15,13 @@ export default function Search() {
   return (
     <TextInput
       value={filters["keyword"] || ""}
-      onChange={(e) => setFilters({ ...filters, keyword: e.target.value })}
+      onChange={(e) => {
+        const newFilters = { ...filters, keyword: e.target.value };
+        if (e.target.value.length === 0) {
+          delete newFilters["keyword"];
+        }
+        setFilters({ ...newFilters });
+      }}
       classNames={{
         input: classes["search-input"],
         icon: classes["search-icon"],
