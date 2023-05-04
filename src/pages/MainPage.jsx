@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Container, Flex } from "@mantine/core";
 import Filters from "../components/Filters/Filters";
-import Vacansies from "../components/Vacancies/Vacansies";
-import { Pagination } from "@mantine/core";
+import Vacancies from "../components/Vacancies/Vacancies";
+
 import { VacancyService } from "../API/VacancyService";
 import { VacanciesContext } from "../context/VacancyContext";
 import { FiltersContext } from "../context/FiltersContext";
@@ -44,10 +44,9 @@ export default function MainPage() {
         <Container size="1116px" px={0} py="40px">
           <Flex columnGap="28px">
             <Filters></Filters>
-            <Vacansies></Vacansies>
+            <Vacancies></Vacancies>
           </Flex>
         </Container>
-        <Pagination mb="44px" size="xl" position="center" total={3} />
       </FiltersContext.Provider>
     </VacanciesContext.Provider>
   );
