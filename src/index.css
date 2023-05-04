@@ -1,6 +1,7 @@
 html {
   font-size: 10px;
   font-family: 'Inter', sans-serif;
+  overflow: overlay;
 }
 
 h1,h2,h3,h4,h5,h6 {
