@@ -15,7 +15,7 @@ const VacancyCard = ({
 }) => {
   return (
     <Card padding="25px">
-      <Group noWrap position="apart">
+      <Group noWrap position="apart" align="start">
         <Title
           size={isVacancyPage ? "2.8rem" : "2rem"}
           weight={isVacancyPage ? 700 : 600}
