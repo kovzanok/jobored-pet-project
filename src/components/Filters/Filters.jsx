@@ -56,6 +56,7 @@ export default function Filters() {
       </div>
       <div className={classes["filters__row"]}>
         <NumberInput
+          min={1}
           value={filters["payment_from"] || ""}
           onChange={(value) => {
             const newFilters = { ...filters, payment_from: value };
@@ -71,6 +72,7 @@ export default function Filters() {
           size="xl"
         />
         <NumberInput
+        min={1}
           value={filters["payment_to"] || ""}
           onChange={(value) => {
             const newFilters = { ...filters, payment_to: value };
