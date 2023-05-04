@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 
+
+
+const saveVacancy=()=>{
+
+}
+
+
 export default function StartIcon() {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <svg
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={saveVacancy}
       style={{ minWidth: "22px" }}
       width="22"
       height="22"

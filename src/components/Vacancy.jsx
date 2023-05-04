@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Group, Text, Title } from "@mantine/core";
 import LocationIcon from "./UI/LocationIcon";
-import StartIcon from "./UI/StartIcon";
+import StartIcon from "./UI/StarIcon";
 import { Link } from "react-router-dom";
 
 const VacancyCard = ({
