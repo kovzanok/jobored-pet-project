@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, Group, Text, Title } from "@mantine/core";
 import LocationIcon from "./UI/LocationIcon";
-import StartIcon from "./UI/StarIcon";
+import StarIcon from "./UI/StarIcon";
 import { Link } from "react-router-dom";
 
 const VacancyCard = ({
+  id,
   isVacancyPage,
   profession,
   town,
@@ -23,7 +24,7 @@ const VacancyCard = ({
         >
           {profession}
         </Title>
-        <StartIcon />
+        <StarIcon id={id} />
       </Group>
       <Group mt={12.5} mb={12.5}>
         <Text
@@ -59,6 +60,7 @@ export default function Vacancy({
     if (isVacancyPage)
       return (
         <VacancyCard
+        id={id}
           isVacancyPage={isVacancyPage}
           profession={profession}
           town={town}
@@ -72,6 +74,7 @@ export default function Vacancy({
   return (
     <Link style={{ textDecoration: "none" }} to={`/vacancy/${id}`}>
       <VacancyCard
+      id={id}
         isVacancyPage={isVacancyPage}
         profession={profession}
         town={town}
