@@ -9,7 +9,8 @@ import { useSearchParams } from "react-router-dom";
 
 export default function Search() {
   const [filters, setFilters] = useContext(FiltersContext);
-  const [vacancies, setVacancies] = useContext(VacanciesContext);
+  const [vacancies, setVacancies, , setIsVacanciesLoading] =
+    useContext(VacanciesContext);
   const [searchParams, setSearchParams] = useSearchParams();
 
   return (
@@ -31,11 +32,13 @@ export default function Search() {
       rightSection={
         <Button
           onClick={() => {
+            setIsVacanciesLoading(true);
             const searchParams = new URLSearchParams(filters);
             setSearchParams(searchParams);
-            VacancyService.getAllVacancies(searchParams).then((data) =>
-              setVacancies(data.objects)
-            );
+            VacancyService.getAllVacancies(searchParams).then((data) => {
+              //setIsVacanciesLoading(false);
+              setVacancies(data.objects);
+            });
           }}
           style={{ borderRadius: "8px" }}
           size="lg"

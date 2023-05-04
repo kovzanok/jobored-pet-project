@@ -5,7 +5,7 @@ import classes from "./VacanciesList.module.css";
 import { VacanciesContext } from "../../context/VacancyContext";
 
 export default function VacanciesList() {
-  const [vacancies] = useContext(VacanciesContext);
+  const [vacancies,,isVacanciesLoading] = useContext(VacanciesContext);
   return (
     <List
       classNames={{
@@ -15,7 +15,7 @@ export default function VacanciesList() {
       spacing="xl"
       listStyleType="none"
     >
-      {vacancies.length === 0 ? (
+      {isVacanciesLoading ? (
         <div
           style={{
             display: "flex",
