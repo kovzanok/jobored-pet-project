@@ -15,6 +15,7 @@ export default function Search() {
 
   return (
     <TextInput
+    disabled={isVacanciesLoading}
       value={filters["keyword"] || ""}
       onChange={(e) => {
         const newFilters = { ...filters, keyword: e.target.value };

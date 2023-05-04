@@ -13,7 +13,9 @@
   border: 1px solid #d5d6dc;
 }
 
-.search-input:hover {
+
+
+.search-input:not(:disabled):hover {
   border: 1px solid #5e96fc;
 }
 
@@ -33,7 +35,7 @@
   outline: none;
 }
 
-.search-button:hover button {
+.search-button button:not(:disabled):hover {
   background-color: #92c1ff;
 }
 
