@@ -21,7 +21,9 @@ export default function Vacancy({
       </Group>
       <Group mt={12.5} mb={12.5}>
         <Text size="1.6rem" weight={600}>
-          з/п от {paymentFrom} до {paymentTo} {currency}
+          з/п {paymentFrom !== 0 && `от ${paymentFrom}`}{" "}
+          {paymentTo !== 0 && `до ${paymentTo} `}
+          {paymentFrom!==0 || paymentTo!==0 ? currency: 'не указана'}
         </Text>
         <Text>•</Text>
         <Text size="1.6rem">{typeOfWork}</Text>
