@@ -39,6 +39,7 @@ export default function VacanciesList() {
           return (
             <List.Item key={vacancy.id}>
               <Vacancy
+                id={vacancy.id}
                 profession={profession}
                 town={town.title}
                 typeOfWork={type_of_work.title}
