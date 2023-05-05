@@ -5,6 +5,8 @@ import StarIcon from "./UI/StarIcon";
 import { Link } from "react-router-dom";
 import { VacancyContext } from "../contexts/Contexts";
 
+
+
 const VacancyCard = ({ isVacancyPage }) => {
   const { profession, town, type_of_work, payment_from, payment_to, currency } =
     useContext(VacancyContext);

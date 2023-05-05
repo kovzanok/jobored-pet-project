@@ -59,7 +59,7 @@ export default function VacanciesList() {
               position="center"
               value={activePage}
               onChange={setActivePage}
-              total={Math.ceil(vacancies.length / 4)}
+              total={3}
             />
           </>
         )}

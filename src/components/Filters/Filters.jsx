@@ -7,13 +7,14 @@ import { VacanciesContext } from "../../contexts/Contexts";
 import MySelect from "../MySelect/MySelect";
 import MyNumberInput from "../MyNumberInput/MyNumberInput";
 
-export default function Filters() {
+export default function Filters({onClose}) {
   const [, , isVacanciesLoading, setIsVacanciesLoading] =
     useContext(VacanciesContext);
   const [filters, setFilters] = useContext(FiltersContext);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const submitFilters = () => {
+    onClose();
     if (new URLSearchParams(filters).toString() !== searchParams.toString()) {
       setIsVacanciesLoading(true);
       setSearchParams(new URLSearchParams(filters));
