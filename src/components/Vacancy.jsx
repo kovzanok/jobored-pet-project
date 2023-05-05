@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Card, Group, Text, Title } from "@mantine/core";
-import LocationIcon from "./UI/LocationIcon";
+import locationIcon from "../assets/location.svg";
 import StarIcon from "./UI/StarIcon";
 import { Link } from "react-router-dom";
 import { VacancyContext } from "../contexts/Contexts";
@@ -43,7 +43,7 @@ const VacancyCard = ({ isVacancyPage }) => {
         </Text>
       </Group>
       <Group>
-        <LocationIcon />
+        <img src={locationIcon} />
         <Text size="1.6rem">{town.title}</Text>
       </Group>
     </Card>
@@ -65,7 +65,7 @@ export default function Vacancy({ isVacancyPage = false }) {
 
   return (
     <VacancyWrapper isVacancyPage={isVacancyPage} id={id}>
-      <VacancyCard isVacancyPage={isVacancyPage}/>
+      <VacancyCard isVacancyPage={isVacancyPage} />
     </VacancyWrapper>
   );
 }

@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { TextInput, Button } from "@mantine/core";
-import SearchIcon from "../UI/SearchIcon";
 import classes from "./Search.module.css";
 import { FiltersContext } from "../../contexts/Contexts";
 import { VacanciesContext } from "../../contexts/Contexts";
 import { VacancyService } from "../../API/VacancyService";
 import { useSearchParams } from "react-router-dom";
+import searchIcon from "../../assets/search.svg";
 
 export default function Search() {
   const [filters, setFilters] = useContext(FiltersContext);
@@ -35,7 +35,6 @@ export default function Search() {
         <Button
           disabled={isVacanciesLoading}
           onClick={() => {
-            
             if (
               new URLSearchParams(filters).toString() !==
               searchParams.toString()
@@ -55,7 +54,7 @@ export default function Search() {
         </Button>
       }
       rightSectionWidth={160}
-      icon={<SearchIcon />}
+      icon={<img src={searchIcon} />}
     />
   );
 }
