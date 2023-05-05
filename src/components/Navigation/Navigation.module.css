@@ -10,10 +10,7 @@
   text-decoration: none;
 }
 
-.nav-link_active {
-  color: #5e96fc;
-  font-weight: 500;
-}
+
 
 @media (max-width: 625px) {
   .nav {
