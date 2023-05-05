@@ -1,20 +1,21 @@
 import { Loader, Select } from "@mantine/core";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import DownIcon from "../UI/DownIcon";
 import { FiltersContext, VacanciesContext } from "../../contexts/Contexts";
 import classes from "./MySelect.module.css";
 import { VacancyService } from "../../API/VacancyService";
+import { useFetching } from "../../hooks/useFetching";
 
 export default function MySelect() {
   const [catalogues, setCatalogues] = useState([]);
   const [filters, setFilters] = useContext(FiltersContext);
   const [, , isVacanciesLoading] = useContext(VacanciesContext);
 
-  useEffect(() => {
-    VacancyService.getAllCatalogues().then((data) => {
-      setCatalogues(data);
-    });
-  }, []);
+  useFetching(
+    (signal) => VacancyService.getAllCatalogues(signal),
+    [],
+    (data) => setCatalogues(data)
+  );
 
   return (
     <Select
