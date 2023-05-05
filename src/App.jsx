@@ -4,21 +4,14 @@ import MainPage from "./pages/MainPage";
 import VacancyPage from "./pages/VacancyPage";
 import ErrorPage from "./pages/ErrorPage";
 import { ActiveVacanciesContext } from "./contexts/Contexts";
+import { useLocalStorage } from '@mantine/hooks'
 
 import "./App.css";
 import Layout from "./components/Layout";
-import { useState } from "react";
 
-const getActiveVancancies = () => {
-  const activeVacanciesString = window.localStorage.getItem("activeVacancies");
-  if (activeVacanciesString) {
-    return JSON.parse(activeVacanciesString);
-  }
-  return [];
-};
 
 function App() {
-  const [activeVacancies, setActiveVacancies] = useState(getActiveVancancies());
+  const [activeVacancies,setActiveVacancies]=useLocalStorage({key:'activeVacancies',defaultValue:[]})
   return (
     <>
       <ActiveVacanciesContext.Provider
