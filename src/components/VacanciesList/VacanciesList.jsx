@@ -45,8 +45,8 @@ export default function VacanciesList() {
             <Pagination
               styles={{
                 control: {
-                  fontSize: '1.4rem',
-                  width:'32px',
+                  fontSize: "1.4rem",
+                  width: "32px",
                   "&[data-active]": {
                     backgroundColor: "#5E96FC",
                   },
@@ -55,11 +55,11 @@ export default function VacanciesList() {
               mt="40px"
               mb="44px"
               size="3.2rem"
-              spacing='0.8rem'
+              spacing="0.8rem"
               position="center"
               value={activePage}
               onChange={setActivePage}
-              total={3}
+              total={Math.min(Math.ceil(vacancies.length / 4), 3)}
             />
           </>
         )}
