@@ -1,35 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Container, Flex } from "@mantine/core";
 import Filters from "../components/Filters/Filters";
-import Vacancies from "../components/Vacancies/Vacancies";
+import Vacancies from "../components/Vacancies";
 
 import { VacancyService } from "../API/VacancyService";
-import { VacanciesContext } from "../context/VacancyContext";
-import { FiltersContext } from "../context/FiltersContext";
-
-function searchParamsToObject(searchParams) {
-  const initialObject = { published: 1 };
-  if (searchParams.toString().length !== 0) {
-    for (const [key, value] of searchParams.entries()) {
-      initialObject[key] = decodeURI(value);
-    }
-  }
-
-  return initialObject;
-}
+import { VacanciesContext } from "../contexts/Contexts";
+import { FiltersContext } from "../contexts/Contexts";
+import { searchParamsToObject } from "../utils/utils";
+import { useFetching } from "../hooks/useFetching";
 
 export default function MainPage() {
   const [vacancies, setVacancies] = useState([]);
   const [isVacanciesLoading, setIsVacanciesLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
   const [filters, setFilters] = useState(searchParamsToObject(searchParams));
-  useEffect(() => {
-    VacancyService.getAllVacancies(searchParams).then((data) => {
+
+  useFetching(
+    (signal) => VacancyService.getAllVacancies(searchParams, signal),
+    [searchParams],
+    (data) => {
       setVacancies(data.objects);
       setIsVacanciesLoading(false);
-    });
-  }, [searchParams]);
+    }
+  );
+
   return (
     <VacanciesContext.Provider
       value={[
@@ -40,7 +35,6 @@ export default function MainPage() {
       ]}
     >
       <FiltersContext.Provider value={[filters, setFilters]}>
-        {" "}
         <Container size="1116px" px={0} py="40px">
           <Flex columnGap="28px">
             <Filters></Filters>

@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import Search from "../Search/Search";
-import VacanciesList from "../VacanciesList/VacanciesList";
-import { VacanciesContext } from "../../context/VacancyContext";
-import NotFoundMessage from "../UI/NotFoundMessage";
+import Search from "./Search/Search";
+import VacanciesList from "./VacanciesList/VacanciesList";
+import { VacanciesContext } from "../contexts/Contexts";
+import NotFoundMessage from "./UI/NotFoundMessage";
 
 
 export default function Vacancies() {

@@ -1,89 +1,68 @@
 import React, { useContext } from "react";
 import { Card, Group, Text, Title } from "@mantine/core";
-import LocationIcon from "./UI/LocationIcon";
+import locationIcon from "../assets/location.svg";
 import StarIcon from "./UI/StarIcon";
 import { Link } from "react-router-dom";
+import { VacancyContext } from "../contexts/Contexts";
 
-const VacancyCard = ({
-  id,
-  isVacancyPage,
-  profession,
-  town,
-  typeOfWork,
-  paymentFrom,
-  paymentTo,
-  currency,
-}) => {
+const VacancyCard = ({ isVacancyPage }) => {
+  const { profession, town, type_of_work, payment_from, payment_to, currency } =
+    useContext(VacancyContext);
   return (
     <Card padding="25px">
       <Group noWrap position="apart" align="start">
         <Title
-          ta='start'
+          ta="start"
           size={isVacancyPage ? "2.8rem" : "2rem"}
           weight={isVacancyPage ? 700 : 600}
           color={isVacancyPage ? "#232134" : "#5E96FC"}
+          lh={isVacancyPage ? "33.89px" : "24.2px"}
         >
           {profession}
         </Title>
-        <StarIcon id={id} />
+        <StarIcon />
       </Group>
       <Group mt={12.5} mb={12.5}>
         <Text
           size={isVacancyPage ? "2rem" : "1.6rem"}
           weight={isVacancyPage ? 700 : 600}
+          lh="2rem"
         >
-          з/п {paymentFrom !== 0 && `от ${paymentFrom}`}{" "}
-          {paymentTo !== 0 && `до ${paymentTo} `}
-          {paymentFrom !== 0 || paymentTo !== 0 ? currency : "не указана"}
+          з/п {payment_from !== 0 && `от ${payment_from}`}{" "}
+          {payment_to !== 0 && `до ${payment_to} `}
+          {payment_from !== 0 || payment_to !== 0 ? currency : "не указана"}
         </Text>
         <Text>•</Text>
-        <Text size={isVacancyPage ? "2rem" : "1.6rem"}>{typeOfWork}</Text>
+        <Text size={isVacancyPage ? "2rem" : "1.6rem"}>
+          {type_of_work.title}
+        </Text>
       </Group>
       <Group>
-        <LocationIcon />
-        <Text size="1.6rem">{town}</Text>
+        <img src={locationIcon} />
+        <Text size="1.6rem">
+          {town.title}
+        </Text>
       </Group>
     </Card>
   );
 };
 
-export default function Vacancy({
-  isVacancyPage = false,
-  id,
-  profession,
-  town,
-  typeOfWork,
-  paymentFrom,
-  paymentTo,
-  currency,
-}) {
-  {
-    if (isVacancyPage)
-      return (
-        <VacancyCard
-        id={id}
-          isVacancyPage={isVacancyPage}
-          profession={profession}
-          town={town}
-          typeOfWork={typeOfWork}
-          paymentFrom={paymentFrom}
-          paymentTo={paymentTo}
-          currency={currency}
-        />
-      );
-  }
-  return (
+const VacancyWrapper = ({ isVacancyPage, id, children }) => {
+  return isVacancyPage ? (
+    <>{children}</>
+  ) : (
     <Link style={{ textDecoration: "none" }} to={`/vacancy/${id}`}>
-      <VacancyCard
-      id={id}
-        isVacancyPage={isVacancyPage}
-        profession={profession}
-        town={town}
-        typeOfWork={typeOfWork}
-        paymentFrom={paymentFrom}
-        paymentTo={paymentTo}
-        currency={currency}
-      />
+      {children}
     </Link>
+  );
+};
+
+export default function Vacancy({ isVacancyPage = false }) {
+  const { id } = useContext(VacancyContext);
+
+  return (
+    <VacancyWrapper isVacancyPage={isVacancyPage} id={id}>
+      <VacancyCard isVacancyPage={isVacancyPage} />
+    </VacancyWrapper>
   );
 }

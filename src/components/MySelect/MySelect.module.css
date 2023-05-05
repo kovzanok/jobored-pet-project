@@ -1,0 +1,55 @@
+.item {
+  font-size: 1.4rem;
+  line-height: 2rem;
+  padding: 8px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+  border-radius: 8px;
+  margin: 0;
+}
+
+.item:hover {
+  background-color: #deecff;
+}
+
+.item:active {
+  color: white;
+  background-color: #5e96fc;
+}
+
+.label {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-family: "Inter", sans-serif;
+}
+
+.input {
+  font-family: "Inter", sans-serif;
+  font-size: 1.4rem;
+  padding: 11px;
+  height: 42px;
+  max-width: 275px;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.input:not(:disabled):hover {
+  border: 1px solid #5e96fc;
+}
+
+.input:focus + .rightSection > svg {
+  transform: rotate(180deg);
+}
+
+.input:focus + .rightSection > svg > path {
+  stroke: #5e96fc;
+}
+
+.dropdown {
+  overflow: hidden;
+}
+
+.itemsWrapper {
+  
+}

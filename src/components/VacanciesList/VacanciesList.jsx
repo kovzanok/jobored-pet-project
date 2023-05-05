@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Vacancy from "../Vacancy";
 import { List, Loader } from "@mantine/core";
 import classes from "./VacanciesList.module.css";
-import { VacanciesContext, VacancyContext } from "../../context/VacancyContext";
+import { VacanciesContext, VacancyContext } from "../../contexts/Contexts";
 import { Pagination } from "@mantine/core";
 
 export default function VacanciesList() {
@@ -34,26 +34,10 @@ export default function VacanciesList() {
             {vacancies
               .slice((activePage - 1) * 4, (activePage - 1) * 4 + 4)
               .map((vacancy) => {
-                const {
-                  profession,
-                  town,
-                  type_of_work,
-                  payment_from,
-                  payment_to,
-                  currency,
-                } = vacancy;
                 return (
                   <VacancyContext.Provider key={vacancy.id} value={vacancy}>
                     <List.Item>
-                      <Vacancy
-                        id={vacancy.id}
-                        profession={profession}
-                        town={town.title}
-                        typeOfWork={type_of_work.title}
-                        paymentFrom={payment_from}
-                        paymentTo={payment_to}
-                        currency={currency}
-                      ></Vacancy>
+                      <Vacancy></Vacancy>
                     </List.Item>
                   </VacancyContext.Provider>
                 );

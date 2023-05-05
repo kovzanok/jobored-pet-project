@@ -1,118 +1,59 @@
-import { Select, Button, NumberInput, Loader } from "@mantine/core";
-import React, { useContext, useEffect, useState, useMemo } from "react";
+import { Button, NumberInput } from "@mantine/core";
+import React, { useContext } from "react";
 import classes from "./Filters.module.css";
-import DownIcon from "../UI/DownIcon.jsx";
-import styles from "./Select.css";
-import { VacancyService } from "../../API/VacancyService";
-import { FiltersContext } from "../../context/FiltersContext";
+import { FiltersContext } from "../../contexts/Contexts";
 import { useSearchParams } from "react-router-dom";
-import { VacanciesContext } from "../../context/VacancyContext";
+import { VacanciesContext } from "../../contexts/Contexts";
+import MySelect from "../MySelect/MySelect";
+import MyNumberInput from "../MyNumberInput/MyNumberInput";
 
 export default function Filters() {
-  const [catalogues, setCatalogues] = useState([]);
-
-  const [vacancies, setVacancies, isVacanciesLoading, setIsVacanciesLoading] =
+  const [, , isVacanciesLoading, setIsVacanciesLoading] =
     useContext(VacanciesContext);
   const [filters, setFilters] = useContext(FiltersContext);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  useMemo(() => {
-    VacancyService.getAllCatalogues().then((data) => {
-      setCatalogues(data);
-    });
-  }, []);
+  const submitFilters = () => {
+    if (new URLSearchParams(filters).toString() !== searchParams.toString()) {
+      setIsVacanciesLoading(true);
+      setSearchParams(new URLSearchParams(filters));
+    }
+  };
+
+  const resetFilters = () => {
+    setFilters({ published: 1 });
+    if (searchParams.toString().length !== 0) {
+      setSearchParams(new URLSearchParams());
+      setIsVacanciesLoading(true);
+    }
+  };
+
   return (
     <form onSubmit={(e) => e.preventDefault()} className={classes["filters"]}>
-      <div className={classes["filters__header"]}>
-        <h2 className={classes["filters__title"]}>Фильтры</h2>
+      <div className={classes["header"]}>
+        <h2 className={classes["title"]}>Фильтры</h2>
         <button
           disabled={isVacanciesLoading}
-          onClick={() => {
-            setFilters({ published: 1 });
-            if (searchParams.toString().length !== 0) {
-              setSearchParams(new URLSearchParams());
-              setIsVacanciesLoading(true);
-            }
-          }}
-          className={classes["filters__reset-button"]}
+          onClick={resetFilters}
+          className={classes["reset-button"]}
         >
           Сбросить все
-          <span className={classes["filters__close-icon"]}></span>
+          <span className={classes["cross-icon"]}></span>
         </button>
       </div>
-      <div className={classes["filters__row"]}>
-        <Select
-          value={Number(filters["catalogues"])}
-          disabled={catalogues.length === 0 || isVacanciesLoading}
-          onChange={(value) => {
-            setFilters({ ...filters, catalogues: value });
-          }}
-          maxDropdownHeight="20rem"
-          className={classes["filters__select"]}
-          data={catalogues.map((catalogue) => {
-            return { value: catalogue.key, label: catalogue.title };
-          })}
-          radius="md"
-          placeholder="Выберете отрасль"
-          label="Отрасль"
-          size="xl"
-          rightSection={
-            catalogues.length === 0 || isVacanciesLoading ? (
-              <Loader />
-            ) : (
-              <DownIcon />
-            )
-          }
-          rightSectionWidth={50}
-          styles={{ rightSection: { pointerEvents: "none" } }}
-        />
+      <div className={classes["row"]}>
+        <MySelect />
       </div>
-      <div className={classes["filters__row"]}>
-        <NumberInput
-          disabled={isVacanciesLoading}
-          min={1}
-          value={Number(filters["payment_from"]) || ""}
-          onChange={(value) => {
-            const newFilters = { ...filters, payment_from: value };
-            if (value.length === 0) {
-              delete newFilters["payment_from"];
-            }
-            setFilters({ ...newFilters });
-          }}
-          className={classes["filters__input"]}
-          radius="md"
-          placeholder="От"
-          label="Оклад"
-          size="xl"
-        />
-        <NumberInput
-          disabled={isVacanciesLoading}
-          min={1}
-          value={Number(filters["payment_to"]) || ""}
-          onChange={(value) => {
-            const newFilters = { ...filters, payment_to: value };
-            if (value.length === 0) {
-              delete newFilters["payment_to"];
-            }
-            setFilters({ ...newFilters });
-          }}
-          className={classes["filters__input"]}
-          radius="md"
-          placeholder="До"
-          size="xl"
-        />
+      <div className={classes["row"]}>
+        <MyNumberInput placeholder="От" label="Оклад" name="payment_from" />
+        <MyNumberInput placeholder="До" label="" name="payment_to" />
       </div>
       <Button
         disabled={isVacanciesLoading}
-        onClick={() => {
-          if (new URLSearchParams(filters).toString()!==searchParams.toString()) {
-            setIsVacanciesLoading(true);
-            setSearchParams(new URLSearchParams(filters));
-          }
+        onClick={submitFilters}
+        classNames={{
+          root: classes["submit-button"],
         }}
-        bg="#5E96FC"
-        className={classes["filters__button"]}
-        size="xl"
       >
         Применить
       </Button>

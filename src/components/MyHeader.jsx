@@ -1,7 +1,7 @@
 import React from "react";
-import { Center, Container, Flex } from "@mantine/core";
-import Navigation from "../Navigation/Navigation";
-import Logo from "../UI/Logo/Logo";
+import { Container, Flex } from "@mantine/core";
+import Navigation from "./Navigation/Navigation";
+import Logo from "./UI/Logo/Logo";
 
 export default function MyHeader() {
   return (

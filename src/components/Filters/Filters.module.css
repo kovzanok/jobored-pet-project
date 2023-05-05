@@ -1,5 +1,6 @@
 .filters {
   width: 315px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
@@ -10,29 +11,33 @@
   height: 360px;
 }
 
-.filters__header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
-.filters__row {
+.row {
   display: flex;
   flex-direction: column;
   row-gap: 8px;
 }
 
-.filters__header .filters__title {
+.header .title {
   font-size: 2rem;
+  line-height: 2rem;
 }
 
-.filters__title {
+.title {
   font-size: 1.6rem;
+  line-height: 19.36px;
   color: #232134;
 }
 
-.filters__reset-button {
+/*Reset button*/
+
+.reset-button {
   cursor: pointer;
   color: #acadb9;
   font-weight: 500;
@@ -46,14 +51,16 @@
   width: 125px;
 }
 
-.filters__close-icon {
+/*Cross icon*/
+
+.cross-icon {
   position: relative;
   display: inline-block;
   width: 16px;
   height: 16px;
 }
 
-.filters__close-icon::after {
+.cross-icon::after {
   content: "";
   position: absolute;
   width: 10.32px;
@@ -64,7 +71,7 @@
   transform: rotate(-135deg);
 }
 
-.filters__close-icon::before {
+.cross-icon::before {
   content: "";
   border: 1.25px solid #acadb9;
   position: absolute;
@@ -75,88 +82,40 @@
   transform: rotate(135deg);
 }
 
-.filters__reset-button:not(:disabled):hover {
+.reset-button:not(:disabled):hover {
   color: #92c1ff;
 }
 
-.filters__reset-button:not(:disabled):active {
+.reset-button:not(:disabled):active {
   color: #5e96fc;
 }
 
-.filters__reset-button:not(:disabled):hover .filters__close-icon::after,
-.filters__reset-button:not(:disabled):hover .filters__close-icon::before {
+.reset-button:not(:disabled):hover .cross-icon::after,
+.reset-button:not(:disabled):hover .cross-icon::before {
   border: 1.25px solid #92c1ff;
 }
 
-.filters__reset-button:not(:disabled):active .filters__close-icon::after,
-.filters__reset-button:not(:disabled):active .filters__close-icon::before {
+.reset-button:not(:disabled):active .cross-icon::after,
+.reset-button:not(:disabled):active .cross-icon::before {
   border: 1.25px solid #5e96fc;
 }
 
-.filters__select {
-  overflow-x: hidden;
-}
+/*Submit button*/
 
-.filters__select input {
+.submit-button {
+  width: 100%;
+  font-weight: 500;
+  min-height: 40px;
+  background-color: #5e96fc;
+  border-radius: 8px;
+  font-size: 1.4rem;
   font-family: "Inter", sans-serif;
 }
 
-.filters__select input:focus + div > svg {
-  transform: rotate(180deg);
-}
-
-.filters__select input:focus + div > svg > path {
-  stroke: #5e96fc;
-}
-
-
-
-.filters__select input:not(:disabled):hover {
-  border: 1px solid #5e96fc;
-}
-
-.filters__select input {
-  font-size: 1.4rem;
-}
-
-.filters__select label,
-.filters__input label {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.filters__input button {
-  border: none;
-}
-
-.filters__input input {
-  font-size: 1.4rem;
-  border: 1px solid #d5d6dc;
-}
-
-
-
-.filters__input input:not(:disabled):hover {
-  border: 1px solid #5e96fc;
-}
-
-.filters__input input:focus {
-  caret-color: #5e96fc;
-}
-
-.filters__input svg path {
-  fill: #acadb9;
-}
-
-.filters__button:not(:disabled):hover {
+.submit-button:not(:disabled):hover {
   background-color: #92c1ff;
 }
 
-.filters__button:active {
+.submit-button:active {
   background-color: #3b7cd3;
-}
-
-.filters__button span {
-  font-size: 1.6rem;
 }
