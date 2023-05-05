@@ -1,5 +1,5 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import FavouritePage from "./pages/FavouritePage";
+import FavouritePage from "./pages/SavedPage";
 import MainPage from "./pages/MainPage";
 import VacancyPage from "./pages/VacancyPage";
 import ErrorPage from "./pages/ErrorPage";
