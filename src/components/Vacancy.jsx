@@ -7,7 +7,6 @@ import { VacancyContext } from "../contexts/Contexts";
 
 const VacancyCard = ({ isVacancyPage }) => {
   const {
-    id,
     profession,
     town,
     type_of_work,
@@ -26,7 +25,7 @@ const VacancyCard = ({ isVacancyPage }) => {
         >
           {profession}
         </Title>
-        <StarIcon id={id} />
+        <StarIcon />
       </Group>
       <Group mt={12.5} mb={12.5}>
         <Text

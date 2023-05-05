@@ -6,29 +6,31 @@ import {
 
 import { useHover } from "@mantine/hooks";
 
-export default function StartIcon({ id }) {
+export default function StartIcon() {
   const [activeVacancies, setActiveVacancies] = useContext(
     ActiveVacanciesContext
   );
-
+  const currenctVacancy = useContext(VacancyContext);
   const { hovered, ref } = useHover();
-  const vacancyC = useContext(VacancyContext);
+
   const isActive =
-    activeVacancies.findIndex((vacancy) => vacancy.id === id) !== -1;
+    activeVacancies.findIndex(
+      (vacancy) => vacancy.id === currenctVacancy.id
+    ) !== -1;
+
   const toggleVacancy = (e) => {
     e.preventDefault();
     const newActiveVacancies = activeVacancies.slice();
+
     if (isActive) {
       const index = newActiveVacancies.findIndex(
-        (vacancy) => vacancy.id === id
+        (vacancy) => vacancy.id === currenctVacancy.id
       );
       newActiveVacancies.splice(index, 1);
-      setActiveVacancies([...newActiveVacancies]);
     } else {
-      const vacancy = { ...vacancyC };
-      newActiveVacancies.push(vacancy);
-      setActiveVacancies([...newActiveVacancies]);
+      newActiveVacancies.push({ ...currenctVacancy });
     }
+    setActiveVacancies([...newActiveVacancies]);
   };
 
   return (
