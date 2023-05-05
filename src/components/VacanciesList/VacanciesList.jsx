@@ -3,7 +3,7 @@ import Vacancy from "../Vacancy";
 import { List, Loader } from "@mantine/core";
 import classes from "./VacanciesList.module.css";
 import { VacanciesContext, VacancyContext } from "../../contexts/Contexts";
-import { Pagination } from "@mantine/core";
+import MyPagination from "../MyPagination";
 
 export default function VacanciesList() {
   const [activePage, setActivePage] = useState(1);
@@ -42,25 +42,7 @@ export default function VacanciesList() {
                   </VacancyContext.Provider>
                 );
               })}
-            <Pagination
-              styles={{
-                control: {
-                  fontSize: '1.4rem',
-                  width:'32px',
-                  "&[data-active]": {
-                    backgroundColor: "#5E96FC",
-                  },
-                },
-              }}
-              mt="40px"
-              mb="44px"
-              size="3.2rem"
-              spacing='0.8rem'
-              position="center"
-              value={activePage}
-              onChange={setActivePage}
-              total={Math.ceil(vacancies.length / 4)}
-            />
+            <MyPagination value={activePage} onChange={setActivePage}/>
           </>
         )}
       </List>

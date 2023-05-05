@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Navigation.module.css";
 import { NavLink } from "react-router-dom";
-export default function Navigation() {
+export default function Navigation({onClose}) {
   const setActive = ({ isActive }) => {
     const navLinkClassName = [classes["nav-link"]];
     if (isActive) {
@@ -12,10 +12,10 @@ export default function Navigation() {
 
   return (
     <nav className={classes["nav"]}>
-      <NavLink className={setActive} to="/">
+      <NavLink onClick={onClose} className={setActive} to="/">
         Поиск Вакансий
       </NavLink>
-      <NavLink className={setActive} to="/favourites">
+      <NavLink onClick={onClose} className={setActive} to="/favourites">
         Избранное
       </NavLink>
     </nav>
