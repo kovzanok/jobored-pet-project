@@ -15,10 +15,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
 }
 
-.filters__row {
+.row {
   display: flex;
   flex-direction: column;
   row-gap: 8px;
@@ -96,31 +95,6 @@
 .reset-button:not(:disabled):active .cross-icon::after,
 .reset-button:not(:disabled):active .cross-icon::before {
   border: 1.25px solid #5e96fc;
-}
-
-.filters__input button {
-  border: none;
-}
-
-.filters__input input {
-  font-size: 1.4rem;
-  border: 1px solid #d5d6dc;
-}
-
-.filters__input input:not(:disabled):hover {
-  border: 1px solid #5e96fc;
-}
-
-.filters__input input:focus {
-  caret-color: #5e96fc;
-}
-
-.filters__input svg path {
-  fill: #acadb9;
-}
-
-.filters__button:not(:disabled):hover {
-  background-color: #92c1ff;
 }
 
 /*Submit button*/

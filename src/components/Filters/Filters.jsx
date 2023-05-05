@@ -5,6 +5,7 @@ import { FiltersContext } from "../../contexts/Contexts";
 import { useSearchParams } from "react-router-dom";
 import { VacanciesContext } from "../../contexts/Contexts";
 import MySelect from "../MySelect/MySelect";
+import MyNumberInput from "../MyNumberInput/MyNumberInput";
 
 export default function Filters() {
   const [, , isVacanciesLoading, setIsVacanciesLoading] =
@@ -40,43 +41,12 @@ export default function Filters() {
           <span className={classes["cross-icon"]}></span>
         </button>
       </div>
-      <div className={classes["filters__row"]}>
+      <div className={classes["row"]}>
         <MySelect />
       </div>
-      <div className={classes["filters__row"]}>
-        <NumberInput
-          disabled={isVacanciesLoading}
-          min={1}
-          value={Number(filters["payment_from"]) || ""}
-          onChange={(value) => {
-            const newFilters = { ...filters, payment_from: value };
-            if (value.length === 0) {
-              delete newFilters["payment_from"];
-            }
-            setFilters({ ...newFilters });
-          }}
-          className={classes["filters__input"]}
-          radius="md"
-          placeholder="От"
-          label="Оклад"
-          size="xl"
-        />
-        <NumberInput
-          disabled={isVacanciesLoading}
-          min={1}
-          value={Number(filters["payment_to"]) || ""}
-          onChange={(value) => {
-            const newFilters = { ...filters, payment_to: value };
-            if (value.length === 0) {
-              delete newFilters["payment_to"];
-            }
-            setFilters({ ...newFilters });
-          }}
-          className={classes["filters__input"]}
-          radius="md"
-          placeholder="До"
-          size="xl"
-        />
+      <div className={classes["row"]}>
+        <MyNumberInput placeholder="От" label="Оклад" name="payment_from" />
+        <MyNumberInput placeholder="До" label="" name="payment_to" />
       </div>
       <Button
         disabled={isVacanciesLoading}
