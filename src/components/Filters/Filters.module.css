@@ -15,6 +15,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 8px;
 }
 
 .row {
@@ -25,10 +26,12 @@
 
 .header .title {
   font-size: 2rem;
+  line-height: 2rem;
 }
 
 .title {
   font-size: 1.6rem;
+  line-height: 19.36px;
   color: #232134;
 }
 

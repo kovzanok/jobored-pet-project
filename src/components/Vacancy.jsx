@@ -6,14 +6,8 @@ import { Link } from "react-router-dom";
 import { VacancyContext } from "../contexts/Contexts";
 
 const VacancyCard = ({ isVacancyPage }) => {
-  const {
-    profession,
-    town,
-    type_of_work,
-    payment_from,
-    payment_to,
-    currency,
-  } = useContext(VacancyContext);
+  const { profession, town, type_of_work, payment_from, payment_to, currency } =
+    useContext(VacancyContext);
   return (
     <Card padding="25px">
       <Group noWrap position="apart" align="start">
@@ -22,6 +16,7 @@ const VacancyCard = ({ isVacancyPage }) => {
           size={isVacancyPage ? "2.8rem" : "2rem"}
           weight={isVacancyPage ? 700 : 600}
           color={isVacancyPage ? "#232134" : "#5E96FC"}
+          lh={isVacancyPage ? "33.89px" : "24.2px"}
         >
           {profession}
         </Title>
@@ -31,6 +26,7 @@ const VacancyCard = ({ isVacancyPage }) => {
         <Text
           size={isVacancyPage ? "2rem" : "1.6rem"}
           weight={isVacancyPage ? 700 : 600}
+          lh="2rem"
         >
           з/п {payment_from !== 0 && `от ${payment_from}`}{" "}
           {payment_to !== 0 && `до ${payment_to} `}
@@ -43,7 +39,9 @@ const VacancyCard = ({ isVacancyPage }) => {
       </Group>
       <Group>
         <img src={locationIcon} />
-        <Text size="1.6rem">{town.title}</Text>
+        <Text size="1.6rem">
+          {town.title}
+        </Text>
       </Group>
     </Card>
   );
