@@ -2,22 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Container, Flex } from "@mantine/core";
 import Filters from "../components/Filters/Filters";
-import Vacancies from "../components/Vacancies/Vacancies";
+import Vacancies from "../components/Vacancies";
 
 import { VacancyService } from "../API/VacancyService";
 import { VacanciesContext } from "../contexts/Contexts";
 import { FiltersContext } from "../contexts/Contexts";
+import { searchParamsToObject } from "../utils/utils";
 
-function searchParamsToObject(searchParams) {
-  const initialObject = { published: 1 };
-  if (searchParams.toString().length !== 0) {
-    for (const [key, value] of searchParams.entries()) {
-      initialObject[key] = decodeURI(value);
-    }
-  }
-
-  return initialObject;
-}
 
 export default function MainPage() {
   const [vacancies, setVacancies] = useState([]);
