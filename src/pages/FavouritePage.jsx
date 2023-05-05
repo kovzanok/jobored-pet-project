@@ -5,7 +5,7 @@ import NotFoundMessage from "../components/UI/NotFoundMessage";
 import {
   VacanciesContext,
   ActiveVacanciesContext,
-} from "../context/VacancyContext";
+} from "../contexts/Contexts";
 import { Link } from "react-router-dom";
 
 export default function FavouritePage() {

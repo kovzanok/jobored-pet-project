@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import {
   ActiveVacanciesContext,
   VacancyContext,
-} from "../../context/VacancyContext";
+} from "../../contexts/Contexts";
 
 const saveActiveVacancies = (activeVacancies) => {
   window.localStorage.setItem(

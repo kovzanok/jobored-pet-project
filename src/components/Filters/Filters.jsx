@@ -1,12 +1,12 @@
 import { Select, Button, NumberInput, Loader } from "@mantine/core";
-import React, { useContext, useEffect, useState, useMemo } from "react";
+import React, { useContext, useState, useMemo } from "react";
 import classes from "./Filters.module.css";
 import DownIcon from "../UI/DownIcon.jsx";
 import styles from "./Select.css";
 import { VacancyService } from "../../API/VacancyService";
-import { FiltersContext } from "../../context/FiltersContext";
+import { FiltersContext } from "../../contexts/Contexts";
 import { useSearchParams } from "react-router-dom";
-import { VacanciesContext } from "../../context/VacancyContext";
+import { VacanciesContext } from "../../contexts/Contexts";
 
 export default function Filters() {
   const [catalogues, setCatalogues] = useState([]);

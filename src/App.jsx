@@ -3,7 +3,7 @@ import FavouritePage from "./pages/FavouritePage";
 import MainPage from "./pages/MainPage";
 import VacancyPage from "./pages/VacancyPage";
 import ErrorPage from "./pages/ErrorPage";
-import { ActiveVacanciesContext } from "./context/VacancyContext";
+import { ActiveVacanciesContext } from "./contexts/Contexts";
 
 import "./App.css";
 import Layout from "./components/Layout";

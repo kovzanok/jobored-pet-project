@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Vacancy from "../Vacancy";
 import { List, Loader } from "@mantine/core";
 import classes from "./VacanciesList.module.css";
-import { VacanciesContext, VacancyContext } from "../../context/VacancyContext";
+import { VacanciesContext, VacancyContext } from "../../contexts/Contexts";
 import { Pagination } from "@mantine/core";
 
 export default function VacanciesList() {

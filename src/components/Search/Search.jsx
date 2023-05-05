@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { TextInput, Button } from "@mantine/core";
 import SearchIcon from "../UI/SearchIcon";
 import classes from "./Search.module.css";
-import { FiltersContext } from "../../context/FiltersContext";
-import { VacanciesContext } from "../../context/VacancyContext";
+import { FiltersContext } from "../../contexts/Contexts";
+import { VacanciesContext } from "../../contexts/Contexts";
 import { VacancyService } from "../../API/VacancyService";
 import { useSearchParams } from "react-router-dom";
 

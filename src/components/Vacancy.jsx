@@ -3,7 +3,7 @@ import { Card, Group, Text, Title } from "@mantine/core";
 import LocationIcon from "./UI/LocationIcon";
 import StarIcon from "./UI/StarIcon";
 import { Link } from "react-router-dom";
-import { VacancyContext } from "../context/VacancyContext";
+import { VacancyContext } from "../contexts/Contexts";
 
 const VacancyCard = ({ isVacancyPage }) => {
   const {

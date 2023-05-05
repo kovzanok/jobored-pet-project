@@ -4,7 +4,7 @@ import classes from "./VacancyPageBody.module.css";
 import { useParams } from "react-router-dom";
 import { VacancyService } from "../../API/VacancyService";
 import Vacancy from "../Vacancy";
-import { VacancyContext } from "../../context/VacancyContext";
+import { VacancyContext } from "../../contexts/Contexts";
 
 export default function VacancyPageBody() {
   const { id } = useParams();

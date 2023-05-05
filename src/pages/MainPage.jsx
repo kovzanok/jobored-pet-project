@@ -5,8 +5,8 @@ import Filters from "../components/Filters/Filters";
 import Vacancies from "../components/Vacancies/Vacancies";
 
 import { VacancyService } from "../API/VacancyService";
-import { VacanciesContext } from "../context/VacancyContext";
-import { FiltersContext } from "../context/FiltersContext";
+import { VacanciesContext } from "../contexts/Contexts";
+import { FiltersContext } from "../contexts/Contexts";
 
 function searchParamsToObject(searchParams) {
   const initialObject = { published: 1 };
