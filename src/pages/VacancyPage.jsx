@@ -1,6 +1,5 @@
 import React from "react";
-import { Container, List, Card } from "@mantine/core";
-import Vacancy from "../components/Vacancy";
+import { Container } from "@mantine/core";
 import VacancyPageBody from "../components/VacancyPageBody/VacancyPageBody";
 
 export default function VacancyPage() {
