@@ -9,18 +9,25 @@ import { VacanciesContext } from "../contexts/Contexts";
 import { FiltersContext } from "../contexts/Contexts";
 import { searchParamsToObject } from "../utils/utils";
 
-
 export default function MainPage() {
   const [vacancies, setVacancies] = useState([]);
   const [isVacanciesLoading, setIsVacanciesLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
   const [filters, setFilters] = useState(searchParamsToObject(searchParams));
+
   useEffect(() => {
+    let ignore = false;
     VacancyService.getAllVacancies(searchParams).then((data) => {
-      setVacancies(data.objects);
-      setIsVacanciesLoading(false);
+      if (!ignore) {
+        setVacancies(data.objects);
+        setIsVacanciesLoading(false);
+      }
     });
+    return () => {
+      ignore = true;
+    };
   }, [searchParams]);
+  
   return (
     <VacanciesContext.Provider
       value={[
@@ -31,7 +38,6 @@ export default function MainPage() {
       ]}
     >
       <FiltersContext.Provider value={[filters, setFilters]}>
-        {" "}
         <Container size="1116px" px={0} py="40px">
           <Flex columnGap="28px">
             <Filters></Filters>
