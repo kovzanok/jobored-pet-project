@@ -4,7 +4,7 @@ import clases from "./Logo.module.css";
 export default function Logo() {
   return (
     <span className={clases["logo"]}>
-      <img src="../../../../public/logo.svg"></img>
+      <img src="/logo.svg"></img>
       <span className={clases["logo__text"]}>Jobored</span>
     </span>
   );
