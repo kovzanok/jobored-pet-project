@@ -1,9 +1,11 @@
 import { Pagination } from "@mantine/core";
 import React, { useContext } from "react";
 import { VacanciesContext } from "../contexts/Contexts";
+import { useLocation } from "react-router-dom";
 
 export default function MyPagination({ value, onChange }) {
   const [vacancies] = useContext(VacanciesContext);
+  const location = useLocation();
   return (
     <Pagination
       styles={{
@@ -15,7 +17,7 @@ export default function MyPagination({ value, onChange }) {
           },
         },
       }}
-      mt="40px"
+      mt={location.pathname === "/favourites" ? "104px" : "40px"}
       mb="44px"
       size="3.2rem"
       spacing="0.8rem"
