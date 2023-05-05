@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function DownIcom() {
+export default function DownIcon() {
   return (
     <svg
-      width="12"
-      height="6"
+      width="14"
+      height="8"
       viewBox="0 0 12 6"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
