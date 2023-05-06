@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Button, Container, Flex, createStyles } from "@mantine/core";
 import Filters from "../components/Filters/Filters";
 import Vacancies from "../components/Vacancies";
 import { VacancyService } from "../API/VacancyService";
-import { VacanciesContext } from "../contexts/Contexts";
+import { ActiveVacanciesContext, VacanciesContext } from "../contexts/Contexts";
 import { FiltersContext } from "../contexts/Contexts";
 import { searchParamsToObject } from "../utils/utils";
 import { useFetching } from "../hooks/useFetching";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { FiltersWrapper } from "../components/FiltersWrapper/FiltersWrapper";
-
 
 const useStyles = createStyles((theme) => ({
   container: {
@@ -51,17 +50,19 @@ export default function MainPage() {
   const [filters, setFilters] = useState(searchParamsToObject(searchParams));
   const { classes } = useStyles();
   const matches = useMediaQuery("(max-width: 930px)");
+  const [, , token] = useContext(ActiveVacanciesContext);
+  const [opened, { open, close }] = useDisclosure(false);
 
-  const [opened, {open, close}]=useDisclosure(false);
 
-  useFetching(
-    (signal) => VacancyService.getAllVacancies(searchParams, signal),
-    [searchParams],
-    (data) => {
-      setVacancies(data.objects);
-      setIsVacanciesLoading(false);
-    }
-  );
+    useFetching(
+      (signal) => VacancyService.getAllVacancies(searchParams, signal, token),
+      [searchParams,token],
+      (data) => {
+        setVacancies(data.objects);
+        setIsVacanciesLoading(false);
+      }
+    );
+
 
   return (
     <VacanciesContext.Provider
@@ -81,7 +82,9 @@ export default function MainPage() {
 
             <Vacancies></Vacancies>
             <div className={classes.buttonWrapper}>
-              <Button onClick={open} className={classes.button}>Фильтры</Button>
+              <Button onClick={open} className={classes.button}>
+                Фильтры
+              </Button>
             </div>
           </Flex>
         </Container>
@@ -89,5 +92,3 @@ export default function MainPage() {
     </VacanciesContext.Provider>
   );
 }
-
-
