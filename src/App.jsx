@@ -2,7 +2,6 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import FavouritePage from "./pages/SavedPage";
 import MainPage from "./pages/MainPage";
 import VacancyPage from "./pages/VacancyPage";
-import ErrorPage from "./pages/ErrorPage";
 import { ActiveVacanciesContext } from "./contexts/Contexts";
 import { useLocalStorage } from '@mantine/hooks'
 
@@ -23,7 +22,6 @@ function App() {
               <Route index element={<MainPage />}></Route>
               <Route path="/vacancy/:id" element={<VacancyPage />}></Route>
               <Route path="/favourites" element={<FavouritePage />}></Route>
-              <Route path="*" element={<ErrorPage />}></Route>
             </Route>
           </Routes>
         </BrowserRouter>
