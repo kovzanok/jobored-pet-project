@@ -15,6 +15,7 @@ export default function Search() {
   const searchVacancies = (e) => {
     e.preventDefault();
     if (new URLSearchParams(filters).toString() !== searchParams.toString()) {
+      filters['page'] = 1;
       setIsVacanciesLoading(true);
       setSearchParams(new URLSearchParams(filters));
     }

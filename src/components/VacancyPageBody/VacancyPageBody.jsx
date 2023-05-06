@@ -1,19 +1,22 @@
 import { Card, Loader } from "@mantine/core";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import classes from "./VacancyPageBody.module.css";
 import { useParams } from "react-router-dom";
 import { VacancyService } from "../../API/VacancyService";
 import Vacancy from "../Vacancy";
-import { VacancyContext } from "../../contexts/Contexts";
+import {
+  ActiveVacanciesContext,
+  VacancyContext,
+} from "../../contexts/Contexts";
 import { useFetching } from "../../hooks/useFetching";
 
 export default function VacancyPageBody() {
   const { id } = useParams();
   const [vacancy, setVacancy] = useState(null);
-
+  const [, , token] = useContext(ActiveVacanciesContext);
   useFetching(
-    (signal) => VacancyService.getVacancyById(id, signal),
-    [],
+    (signal) => VacancyService.getVacancyById(id, signal, token),
+    [token],
     (data) => {
       setVacancy(data);
     }

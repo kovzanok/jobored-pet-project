@@ -1,7 +1,11 @@
 import { Loader, Select } from "@mantine/core";
 import React, { useContext, useState } from "react";
 import DownIcon from "../UI/DownIcon";
-import { FiltersContext, VacanciesContext } from "../../contexts/Contexts";
+import {
+  ActiveVacanciesContext,
+  FiltersContext,
+  VacanciesContext,
+} from "../../contexts/Contexts";
 import classes from "./MySelect.module.css";
 import { VacancyService } from "../../API/VacancyService";
 import { useFetching } from "../../hooks/useFetching";
@@ -10,10 +14,10 @@ export default function MySelect() {
   const [catalogues, setCatalogues] = useState([]);
   const [filters, setFilters] = useContext(FiltersContext);
   const [, , isVacanciesLoading] = useContext(VacanciesContext);
-
+  const [, , token] = useContext(ActiveVacanciesContext);
   useFetching(
-    (signal) => VacancyService.getAllCatalogues(signal),
-    [],
+    (signal) => VacancyService.getAllCatalogues(signal, token),
+    [token],
     (data) => setCatalogues(data)
   );
 
