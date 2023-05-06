@@ -17,11 +17,15 @@ function App() {
     defaultValue: [],
   });
   const [token, setToken] = useState("");
-  useFetching(VacancyService.getAccessKey, [], (token) => setToken(token));
+  useFetching(
+    (signal) => VacancyService.getAccessKey(signal),
+    [],
+    (token) => setToken(token)
+  );
   return (
     <>
       <ActiveVacanciesContext.Provider
-        value={[activeVacancies, setActiveVacancies,token]}
+        value={[activeVacancies, setActiveVacancies, token]}
       >
         <BrowserRouter>
           <Routes>

@@ -1,5 +1,5 @@
 export class VacancyService {
-  static async getAccessKey() {
+  static async getAccessKey(signal) {
     const accessJson = {
       login: "sergei.stralenia@gmail.com",
       password: "paralect123",
@@ -18,6 +18,7 @@ export class VacancyService {
           "x-secret-key": "GEU4nvd3rej*jeh.eqp",
         },
         body: JSON.stringify(accessJson),
+        signal,
       }
     );
     const data = await response.json();
