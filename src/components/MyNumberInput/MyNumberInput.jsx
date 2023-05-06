@@ -3,11 +3,12 @@ import React, { useContext } from "react";
 import { FiltersContext, VacanciesContext } from "../../contexts/Contexts";
 import classes from "./MyNumberInput.module.css";
 
-export default function MyNumberInput({ placeholder, label, name }) {
+export default function MyNumberInput({ placeholder, label, name, ...props }) {
   const [filters, setFilters] = useContext(FiltersContext);
   const [, , isVacanciesLoading] = useContext(VacanciesContext);
   return (
     <NumberInput
+      {...props}
       disabled={isVacanciesLoading}
       min={1}
       value={Number(filters[name]) || ""}

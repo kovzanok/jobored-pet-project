@@ -23,6 +23,7 @@ export default function MySelect() {
 
   return (
     <Select
+      data-elem="industry-select"
       value={Number(filters["catalogues"])}
       disabled={catalogues.length === 0 || isVacanciesLoading}
       onChange={(value) => {

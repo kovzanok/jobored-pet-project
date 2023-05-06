@@ -35,6 +35,7 @@ export default function StartIcon() {
 
   return (
     <svg
+      data-elem={`vacancy-${currenctVacancy.id}-shortlist-button`}
       ref={ref}
       onClick={toggleVacancy}
       style={{ minWidth: "22px" }}

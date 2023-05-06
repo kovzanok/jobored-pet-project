@@ -17,7 +17,7 @@ export default function Filters({ onClose }) {
     onClose();
 
     if (new URLSearchParams(filters).toString() !== searchParams.toString()) {
-      filters['page'] = 1;
+      filters["page"] = 1;
       setIsVacanciesLoading(true);
       setSearchParams(new URLSearchParams(filters));
     }
@@ -48,10 +48,21 @@ export default function Filters({ onClose }) {
         <MySelect />
       </div>
       <div className={classes["row"]}>
-        <MyNumberInput placeholder="От" label="Оклад" name="payment_from" />
-        <MyNumberInput placeholder="До" label="" name="payment_to" />
+        <MyNumberInput
+          data-element="salary-from-input"
+          placeholder="От"
+          label="Оклад"
+          name="payment_from"
+        />
+        <MyNumberInput
+          data-element="salary-to-input"
+          placeholder="До"
+          label=""
+          name="payment_to"
+        />
       </div>
       <Button
+        data-elem="search-button"
         disabled={isVacanciesLoading}
         onClick={submitFilters}
         classNames={{
