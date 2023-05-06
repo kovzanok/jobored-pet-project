@@ -1,5 +1,10 @@
 export class VacancyService {
   static async getAllVacancies(searchParams, signal) {
+    if (searchParams.has("page")) {
+      const page = Number(searchParams.get("page"));
+      const sentPage = Math.floor(Math.abs(page / 5 - 0.1));
+      searchParams.set("page", sentPage);
+    }
     const searchParamsString = searchParams.toString();
     const response = await fetch(
       `https://startup-summer-2023-proxy.onrender.com/2.0/vacancies${
