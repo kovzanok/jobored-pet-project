@@ -13,7 +13,7 @@ export default function Vacancies() {
         flex: 1,
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
+        rowGap: '16px',
         alignItems: "center",
       }}
     >
