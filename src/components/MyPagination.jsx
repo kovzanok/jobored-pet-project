@@ -3,22 +3,28 @@ import React, { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { VacanciesContext } from "../contexts/Contexts";
 
-export default function MyPagination({ value, onChange }) {
+export default function MyPagination({ displayedVacancies, value, onChange }) {
   const location = useLocation();
   const [vacancies] = useContext(VacanciesContext);
-
-  const countMaxPage=() => {
+  const countMaxPage = () => {
     if (vacancies.length < 20) {
-      return Math.ceil(vacancies.length / 4) + (value > 5 ? value : 0);
-    }
-    else if (value === 1) {
-      return 3;
+      const max = Math.ceil(vacancies.length / 4) + (value > 5 ? value : 0);
+      if (value === 1) {
+        return max > 3 ? 3 : max;
+      } else if (max - value <= 1) {
+        return max;
+      }
+      return value + 1;
     } else {
       if (value === 125) {
         return 125;
+      } else if (value === 1) {
+        return 3;
       } else {
         return value + 1;
-      }}}
+      }
+    }
+  };
 
   return (
     <Pagination
@@ -33,7 +39,11 @@ export default function MyPagination({ value, onChange }) {
             display: value >= 3 ? "none" : "flex",
           },
           ":nth-of-type(3)": {
-            display: value === 4 ? "none" : "flex",
+            display:
+              value === 4 ||
+              (value !== countMaxPage() && displayedVacancies.length % 4 !== 0)
+                ? "none"
+                : "flex",
           },
         },
         dots: {

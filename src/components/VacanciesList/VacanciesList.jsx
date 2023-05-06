@@ -15,10 +15,18 @@ export default function VacanciesList() {
     useContext(VacanciesContext);
   const maxIndex = activePage % 5 === 0 ? 5 : activePage % 5;
   const displayedVacancies = vacancies.slice(maxIndex * 4 - 4, maxIndex * 4);
+
+  useEffect(() => {
+    if (displayedVacancies.length === 0) {
+      setActivePage((a) => a - 1);
+    }
+  }, [displayedVacancies.length]);
+
   useEffect(
     () => setActivePage(Number(searchParams.get("page") || 1)),
     [searchParams]
   );
+
   return (
     <>
       <List
@@ -52,6 +60,7 @@ export default function VacanciesList() {
               );
             })}
             <MyPagination
+              displayedVacancies={displayedVacancies}
               value={activePage}
               onChange={(value) => {
                 setIsVacanciesLoading(true);
