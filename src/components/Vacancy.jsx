@@ -25,11 +25,18 @@ const useStyles = createStyles(() => ({
 }));
 
 const VacancyCard = ({ isVacancyPage }) => {
-  const { profession, town, type_of_work, payment_from, payment_to, currency } =
-    useContext(VacancyContext);
+  const {
+    profession,
+    town,
+    type_of_work,
+    payment_from,
+    payment_to,
+    currency,
+    id,
+  } = useContext(VacancyContext);
   const { classes } = useStyles();
   return (
-    <Card padding="25px">
+    <Card data-elem={`vacancy-${id}`} padding="25px">
       <Group noWrap position="apart" align="start">
         <Title
           className={classes.title}

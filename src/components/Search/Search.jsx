@@ -15,7 +15,7 @@ export default function Search() {
   const searchVacancies = (e) => {
     e.preventDefault();
     if (new URLSearchParams(filters).toString() !== searchParams.toString()) {
-      filters['page'] = 1;
+      filters["page"] = 1;
       setIsVacanciesLoading(true);
       setSearchParams(new URLSearchParams(filters));
     }
@@ -32,6 +32,7 @@ export default function Search() {
   return (
     <form className={classes["form"]} onSubmit={searchVacancies}>
       <TextInput
+        data-elem="search-input"
         disabled={isVacanciesLoading}
         value={filters["keyword"] || ""}
         onChange={handleSearchInput}
@@ -44,6 +45,7 @@ export default function Search() {
         placeholder="Введите название вакансии"
         rightSection={
           <Button
+            data-elem="search-button"
             onClick={searchVacancies}
             disabled={isVacanciesLoading}
             style={{ borderRadius: "8px" }}
