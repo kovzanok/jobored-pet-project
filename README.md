@@ -3,6 +3,7 @@
  - ReactRouter
  - Mantine UI
  - CSS3
+ - ESLint
  - Vite
 
 ## Features
