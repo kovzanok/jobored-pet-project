@@ -10,7 +10,7 @@ export class VacancyService {
     };
     
     const response = await fetch(
-      `https://api.superjob.ru/2.0/oauth2/password/`,
+      `https://jobored-proxy.onrender.com/2.0/oauth2/password`,
       {
         method: "POST",
         headers: {
@@ -34,7 +34,7 @@ export class VacancyService {
     const searchParamsString = searchParams.toString();
 
     const response = await fetch(
-      `https://api.superjob.ru/2.0/vacancies/${
+      `https://jobored-proxy.onrender.com/2.0/vacancies/${
         searchParamsString.length !== 0 ? "?" + searchParamsString : ""
       }`,
       {
@@ -52,7 +52,7 @@ export class VacancyService {
 
   static async getVacancyById(id, signal, token) {
     const response = await fetch(
-      `https://api.superjob.ru/2.0/vacancies/${id}`,
+      `https://jobored-proxy.onrender.com/2.0/vacancies/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -68,7 +68,7 @@ export class VacancyService {
 
   static async getAllCatalogues(signal, token) {
     const response = await fetch(
-      "https://api.superjob.ru/2.0/catalogues",
+      "https://jobored-proxy.onrender.com/2.0/catalogues",
       {
         headers: {
           Authorization: `Bearer ${token}`,
