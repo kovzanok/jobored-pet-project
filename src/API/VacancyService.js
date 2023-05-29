@@ -10,7 +10,7 @@ export class VacancyService {
     };
     
     const response = await fetch(
-      `		https://api.superjob.ru/2.0/oauth2/password/`,
+      `https://api.superjob.ru/2.0/oauth2/password/`,
       {
         method: "POST",
         headers: {
