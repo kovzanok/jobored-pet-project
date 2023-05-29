@@ -1,21 +1,20 @@
 export class VacancyService {
   static async getAccessKey(signal) {
     const accessJson = {
-      login: "sergei.stralenia@gmail.com",
-      password: "paralect123",
-      client_id: 2356,
+      login: "joboredpet@gmail.com",
+      password: "joboredPet123",
+      client_id: 2513,
       client_secret:
-        "v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948",
+        "v3.r.137577793.0731bafc737fb8f727ca8df14c4edef0041169e4.c34556061613fe2d49623010bd03944988aa5695",
       hr: 0,
     };
-
+    
     const response = await fetch(
-      `https://startup-summer-2023-proxy.onrender.com/2.0/oauth2/password`,
+      `		https://api.superjob.ru/2.0/oauth2/password/`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-secret-key": "GEU4nvd3rej*jeh.eqp",
         },
         body: JSON.stringify(accessJson),
         signal,
@@ -35,15 +34,14 @@ export class VacancyService {
     const searchParamsString = searchParams.toString();
 
     const response = await fetch(
-      `https://startup-summer-2023-proxy.onrender.com/2.0/vacancies${
+      `https://api.superjob.ru/2.0/vacancies/${
         searchParamsString.length !== 0 ? "?" + searchParamsString : ""
       }`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "x-secret-key": "GEU4nvd3rej*jeh.eqp",
           "X-Api-App-Id":
-            "v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948",
+            "v3.r.137577793.0731bafc737fb8f727ca8df14c4edef0041169e4.c34556061613fe2d49623010bd03944988aa5695",
         },
         signal,
       }
@@ -54,13 +52,12 @@ export class VacancyService {
 
   static async getVacancyById(id, signal, token) {
     const response = await fetch(
-      `https://startup-summer-2023-proxy.onrender.com/2.0/vacancies/${id}`,
+      `https://api.superjob.ru/2.0/vacancies/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "x-secret-key": "GEU4nvd3rej*jeh.eqp",
           "X-Api-App-Id":
-            "v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948",
+            "v3.r.137577793.0731bafc737fb8f727ca8df14c4edef0041169e4.c34556061613fe2d49623010bd03944988aa5695",
         },
         signal,
       }
@@ -71,13 +68,12 @@ export class VacancyService {
 
   static async getAllCatalogues(signal, token) {
     const response = await fetch(
-      "https://startup-summer-2023-proxy.onrender.com/2.0/catalogues",
+      "https://api.superjob.ru/2.0/catalogues",
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "x-secret-key": "GEU4nvd3rej*jeh.eqp",
           "X-Api-App-Id":
-            "v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948",
+            "v3.r.137577793.0731bafc737fb8f727ca8df14c4edef0041169e4.c34556061613fe2d49623010bd03944988aa5695",
         },
         signal,
       }
